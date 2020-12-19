@@ -1,4 +1,4 @@
-import React, { Component, FormEvent } from 'react';
+import React, { FormEvent, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Item, ApplicationState } from '../types';
@@ -16,39 +16,65 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps;
 
-class TodoList extends Component<Props> {
-  inputText = React.createRef<HTMLInputElement>();
+const TodoList = (props: Props) => {
+  const {
+    items,
+    addItem,
+    toggleItem,
+    removeItem,
+  } = props;
 
-  handleSubmit = (e: FormEvent) => {
-    const { addItem } = this.props;
+  const inputText = useRef<HTMLInputElement>(null);
+
+  const submitHandler = (e: FormEvent) => {
     e.preventDefault();
-    addItem(this.inputText.current?.value || '');
+
+    if (inputText && inputText.current) {
+      addItem(inputText.current.value);
+      inputText.current.value = '';
+    }
   };
 
-  render() {
-    const { items, toggleItem, removeItem } = this.props;
+  return (
+    <div className="todo-list">
+      <div className="header">
+        TodoList
+      </div>
 
-    return (
-      <section>
-        <form onSubmit={this.handleSubmit}>
-          <input ref={this.inputText} />
-          <button type="submit">Novo</button>
+      <div className="content">
+        <form onSubmit={submitHandler}>
+          <input ref={inputText} placeholder="Add a task..." />
+          <button type="submit">
+            <i className="fas fa-plus" />
+          </button>
         </form>
-        <ul>
+        <ul className="items">
           {items.map((item) => (
             <li key={item.id}>
-              {item.complete ? <s>{item.text}</s> : item.text}
+              <div className="check-item-container">
+                <div
+                  onClick={() => toggleItem(item.id)}
+                  role="presentation"
+                  className={item.complete ? 'checkbox-item checked' : 'checkbox-item'}
+                />
+                <span>{item.complete ? <s>{item.text}</s> : item.text}</span>
+              </div>
+
               <div>
-                <button type="button" onClick={() => toggleItem(item.id)}>Toggle</button>
-                <button type="button" onClick={() => removeItem(item.id)}>Remove</button>
+                <span className="icon" role="presentation" onClick={() => toggleItem(item.id)}>
+                  <i className="fas fa-pencil-alt" />
+                </span>
+                <span className="icon" role="presentation" onClick={() => removeItem(item.id)}>
+                  <i className="fas fa-trash-alt" />
+                </span>
               </div>
             </li>
           ))}
         </ul>
-      </section>
-    );
-  }
-}
+      </div>
+    </div>
+  );
+};
 
 const mapStateToProps = (state: ApplicationState) => ({
   items: state.items.data,
