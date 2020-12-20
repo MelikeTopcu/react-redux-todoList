@@ -1,5 +1,5 @@
-# Simple Todo App with React, Redux and TypeScript 
-React, Redux and TS
+# TodoList with React, Redux and TypeScript
+A simple TodoList with React, Redux and TypeScript
 
 ## Getting Started
 

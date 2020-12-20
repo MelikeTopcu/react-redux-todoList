@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
@@ -8,6 +7,7 @@ import TodoForm from '../components/TodoForm';
 import TodoItem from '../components/TodoItem';
 import * as itemsActions from '../store/actions/items';
 import { ApplicationState, Item, VisibilityFilters } from '../types';
+import TodoMessage from '../components/TodoMessage';
 
 interface StateProps {
   items: Item[],
@@ -54,22 +54,10 @@ const TodoList = ({
 
         {items.length === 0
           ? (
-            filterState === VisibilityFilters.SHOW_COMPLETED
-              ? (
-                <>
-                  <div className="empty-list">
-                    <i className="fas fa-clipboard-list empty-icon" />
-                    <span>There are no tasks completed yet!</span>
-                  </div>
-
-                  <TodoFilters taskCounter={getTaskCounter()} />
-                </>
-              ) : (
-                <div className="empty-list">
-                  <i className="fas fa-clipboard-list empty-icon" />
-                  <span>Add your first To Do!</span>
-                </div>
-              )
+            <TodoMessage
+              filterState={filterState}
+              getTaskCounter={getTaskCounter}
+            />
           ) : (
             <>
               <ul className="items">
