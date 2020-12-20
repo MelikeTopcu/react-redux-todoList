@@ -4,6 +4,8 @@
 export enum ItemsTypes {
   ADD_ITEM = 'ADD_ITEM',
   TOGGLE_ITEM = 'TOGGLE_ITEM',
+  TOGGLE_EDIT_ITEM = 'TOGGLE_EDIT_ITEM',
+  UPDATE_ITEM = 'UPDATE_ITEM',
   REMOVE_ITEM = 'REMOVE_ITEM',
 }
 
@@ -18,11 +20,12 @@ export interface TodoListActionTypes {
 export interface Item {
   id: number,
   text: string,
+  editing: boolean,
   complete: boolean
 }
 
 /**
- * State type
+ * State types
  */
 export interface ApplicationState {
   items: ItemsState
