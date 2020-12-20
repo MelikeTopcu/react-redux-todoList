@@ -1,7 +1,7 @@
-$primary-base-color: #633a82;
+$primary-base-color: #514795;
 $primary-dark-color: #3a2a47;
-$secondary-base-color: #f77995;
-$secondary-dark-color: #f56c87;
+$secondary-base-color: #ffd00f;
+$secondary-dark-color: #090425;
 $background-color: #f1f1f1;
 $white-color: #fff;
 $text-light-color: #bbb;
@@ -46,7 +46,7 @@ body {
       justify-content: space-between;
       width: 100%;
       background-color: $white-color;
-  
+
       input {
         flex: 1;
         height: 2.5rem;
@@ -107,17 +107,17 @@ body {
           display: flex;
           align-items: center;
         }
-  
+
         .icon {
           margin-left: 1rem;
           color: $primary-base-color;
-           
+
           &:hover {
             cursor: pointer;
             color: $primary-dark-color;
           }
         }
-    
+
         + li {
           border-top: 1px solid $background-color;
         }
@@ -133,7 +133,7 @@ body {
       color: $text-light-color;
 
       .active {
-        color: $text-color
+        color: $text-color;
       }
 
       .filters > * {
@@ -187,7 +187,8 @@ body {
   }
 }
 
-.checkbox-item.checked::before, .checkbox-item:hover::before {
+.checkbox-item.checked::before,
+.checkbox-item:hover::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f00c";
