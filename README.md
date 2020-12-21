@@ -3,10 +3,7 @@ React, Redux and TS
 
 ## Features:
 * Load items from API
-* Create a new item
-* Edit item
-* Toggle item
-* Delete item (using REST API)
+* Create a new item, edit item, toggle item, delete item (using REST API)
 * Filter items (show all, active and completed)
 * Show counter
 
@@ -23,5 +20,6 @@ Tools needed to run this app: `node` and `npm`
 After you have installed all dependencies, you may run the app.
 
 - `json-server --watch items.json`
+- Go to `http://localhost:3000/items`
 - `npm start`
-- Go to `http://localhost:3000`
+- Go to `http://localhost:3001`

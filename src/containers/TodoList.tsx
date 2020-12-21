@@ -16,9 +16,9 @@ interface StateProps {
 
 interface DispatchProps {
   addItem(text: string): void,
-  toggleItem(id: number): void,
+  toggleItem(id: number, text: string, complete: boolean): void,
   toggleEditItem(id: number): void,
-  updateItem(id: number, text: string): void,
+  updateItem(id: number, text: string, complete: boolean): void,
   removeItem(id: number): void,
   loadRequest(): void
 }
@@ -57,7 +57,6 @@ const TodoList = ({
           emptyList={!items.length}
           addItem={addItem}
         />
-
         {items.length === 0
           ? (
             <TodoMessage

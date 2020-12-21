@@ -3,9 +3,9 @@ import { Item } from '../types';
 
 interface TodoItemProps {
   item: Item,
-  toggleItem(id: number): void,
+  toggleItem(id: number, text: string, complete: boolean): void,
   toggleEditItem(id: number): void,
-  updateItem(id: number, text: string): void,
+  updateItem(id: number, text: string, complete: boolean): void,
   removeItem(id: number): void
 }
 
@@ -26,7 +26,7 @@ export default ({
     const itemText = inputText?.current?.value?.trim() || '';
 
     if (itemText !== '') {
-      updateItem(itemID, itemText);
+      updateItem(itemID, itemText, true);
       toggleEditItem(itemID);
     }
   };
@@ -55,7 +55,7 @@ export default ({
           <>
             <div className="check-item-container">
               <div
-                onClick={() => toggleItem(id)}
+                onClick={() => toggleItem(id, text, complete)}
                 role="presentation"
                 className={complete ? 'checkbox-item checked' : 'checkbox-item'}
               />
